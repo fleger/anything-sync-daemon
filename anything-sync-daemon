@@ -35,7 +35,7 @@ sync() {
 	}
 	
 	for i in "${WHATTOSYNC[@]}"; do
-		STATIC="$i-backup"	# this is the hdd bound backup in case of power failure
+		STATIC="$i-backup_asd"	# this is the hdd bound backup in case of power failure
 		LINK="$i"	# this is the name of the symlink
 
 		if [[ -d $LINK ]]; then
@@ -62,7 +62,7 @@ check() {
 	# crash recovery
 	local i STATIC LINK
 	for i in "${WHATTOSYNC[@]}"; do
-		STATIC="$i-backup"  # this is the hdd bound backup in case of power failure
+		STATIC="$i-backup_asd"  # this is the hdd bound backup in case of power failure
 		LINK="$i" # this is the name of the symlink
 		if [[ ! -e "$VOLATILE$i/.flagged" ]]; then
 			[[ -h "$LINK" ]] && rm -f "$LINK"
@@ -75,7 +75,7 @@ unsync() {
 	# restore virgin state on physical discs
 	local i STATIC LINK
 	for i in "${WHATTOSYNC[@]}"; do
-		STATIC="$i-backup"  # this is the hdd bound backup in case of power failure
+		STATIC="$i-backup_asd"  # this is the hdd bound backup in case of power failure
 		LINK="$i" # this is the name of the symlink
 
 		# check if target is there
